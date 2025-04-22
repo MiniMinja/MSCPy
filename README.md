@@ -1,5 +1,7 @@
 # Mins Server Communicator
 
+![Korean](./README_kor.md)
+
 >"I've been trying to make something that can connect small projects together
 and turns out there is already a thing called "Microservices Architecture".
 I just wasted 2 months of my life trying to execute something that can 
