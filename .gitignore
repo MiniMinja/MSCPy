@@ -5,3 +5,4 @@
 !*.py
 !docs.html
 !*.md
+!requirements.txt
