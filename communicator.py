@@ -40,14 +40,15 @@ async def startup_event():
     signal.signal(signal.SIGINT, receive_server)
 
 def makeResponse(room="SYS", res="ERROR: SYSTEM ERROR"):
-    print("response is:",{'room':room, 'res':res})
-    return {"room": room, "res": res}
+    response = {"room": room, "res": res}
+    print("response is: {}".format(str(response)[200:]))
+    return response
 
 def processQuery(ID, roomname, msg):
     print("Thread Status: {}".format(communicationProcess.__commProcess.is_alive()))
     if not communicationProcess.__commProcess.is_alive():
         return makeResponse(res='ERROR: PROCESS NOT RUNNING')
-    print('>>>IN>>{}: {}'.format(ID, msg))
+    print('>>>IN>>{}: {}'.format(ID, str(msg)[200:]))
     communicationProcess.addRequest(ID, roomname, msg)
     queryRes = 'Response timed out'
     time_start = time.time()
@@ -58,7 +59,7 @@ def processQuery(ID, roomname, msg):
         print("Time elapsed processing: {}".format(time.time() - time_start))
         if time.time()  - time_start > TIMEOUT:
             break
-    print('<<OUT<<',queryRes)
+    print('<<OUT<<', str(queryRes)[200:])
     return queryRes
 
 class ResolutionBody(BaseModel):
@@ -96,7 +97,7 @@ async def broadcast(
         msg += "@body@"
         msg += bodyAsString
 
-        print("<<<<{}>>>>".format(bodyAsString))
+        print("<<<<{}>>>>".format(bodyAsString[200:]))
 
     queryRes = processQuery(uniqueID, r, msg)
     room = queryRes[0]
