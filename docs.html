@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MMAT API Overview</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    code {
+      background: #eaeaea;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .endpoint {
+      margin-bottom: 1.5rem;
+    }
+    .method {
+      font-weight: bold;
+      color: #3498db;
+    }
+  </style>
+</head>
+<body>
+  <h1>MMAT API Overview</h1>
+
+  <div class="endpoint">
+    <h2>GET <code>/</code></h2>
+    <p>Returns a basic system response to verify that the API is alive.</p>
+  </div>
+
+  <div class="endpoint">
+    <h2>POST <code>/room/</code></h2>
+    <p>Create a new room.</p>
+    <ul>
+      <li><code>r</code>: (string) Name of the room</li>
+    </ul>
+  </div>
+
+  <div class="endpoint">
+    <h2>POST <code>/broadcast/</code></h2>
+    <p>Broadcast a message to a specific room.</p>
+    <ul>
+      <li><code>r</code>: (string) Room name</li>
+      <li><code>res</code>: (string) Message to broadcast</li>
+    </ul>
+  </div>
+
+  <div class="endpoint">
+    <h2>GET <code>/broadcast/</code></h2>
+    <p>Retrieve all current broadcasts for a room.</p>
+    <ul>
+      <li><code>r</code>: (string) Room name</li>
+    </ul>
+  </div>
+
+  <div class="endpoint">
+    <h2>POST <code>/results/</code></h2>
+    <p>Post results or progress updates for a specific request.</p>
+    <ul>
+      <li><code>r</code>: (string) Room name</li>
+      <li><code>ID</code>: (string) Request ID</li>
+      <li><code>res</code>: (string) Either "PROGRESS" or "RESULTS"</li>
+      <li><code>body</code>: (JSON) Object with keys <code>progress</code> and/or <code>computedResult</code></li>
+    </ul>
+  </div>
+
+  <div class="endpoint">
+    <h2>GET <code>/results/</code></h2>
+    <p>Retrieve result for a specific ID in a room.</p>
+    <ul>
+      <li><code>r</code>: (string) Room name</li>
+      <li><code>ID</code>: (string) Request ID</li>
+    </ul>
+  </div>
+
+  <div class="endpoint">
+    <h2>POST <code>/close/</code></h2>
+    <p>Close a room.</p>
+    <ul>
+      <li><code>r</code>: (string) Room name</li>
+    </ul>
+  </div>
+
+  <div class="endpoint">
+    <h2>GET <code>/status</code></h2>
+    <p>Get server-side status of room and process state.</p>
+  </div>
+
+  <div class="endpoint">
+    <h2>POST <code>/restart</code></h2>
+    <p>Restart the backend communication process.</p>
+  </div>
+
+</body>
+</html>
